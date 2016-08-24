@@ -20,7 +20,7 @@ render: function(){
         <div id="userDrop">
         <ul className="nav navbar">
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span>Ragi.K<span className="caret"></span></a>
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span className="glyphicon glyphicon-user"></span>Anumol<span className="caret"></span></a>
           <ul className="dropdown-menu">
           <li>
             <a href="#"><span className="glyphicon glyphicon-wrench"></span>Settings</a>

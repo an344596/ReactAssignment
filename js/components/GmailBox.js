@@ -1,5 +1,6 @@
 var React = require('react');
 var Component1 = require('./Component1');
+var Navbar=require('./Navbar');
 var loadedData = false;
 var GmailBox = React.createClass({
  getInitialState: function()
@@ -11,7 +12,7 @@ var GmailBox = React.createClass({
    var acToken, tokenType, expiresIn;
    var OAUTHURL    =   'https://accounts.google.com/o/oauth2/v2/auth?';
    var SCOPE       =   'https://mail.google.com/ https://www.googleapis.com/auth/gmail.readonly';
-   var CLIENTID    =   '258588681838-qrg0r8fa6aqs1f24onfqol8e1pms5ja6.apps.googleusercontent.com';
+   var CLIENTID    =   '258588681838-t5qd4m72q3qqipkk9itf9ffm2nrqkhgb.apps.googleusercontent.com';
    var REDIRECT    =   'http://localhost:8080';
    var TYPE        =   'token';
    var _url        =   OAUTHURL + 'scope=' + SCOPE + '&client_id=' + CLIENTID + '&redirect_uri=' + REDIRECT + '&response_type=' + TYPE;
@@ -51,6 +52,7 @@ var GmailBox = React.createClass({
        }
    }, 500);
    this.allLabels();
+
  },
 
 
@@ -58,7 +60,7 @@ var GmailBox = React.createClass({
  {
      var accessToken = localStorage.getItem('gToken');
      $.ajax({
-      url: 'https://www.googleapis.com/gmail/v1/users/me/labels?key={AIzaSyDmsUjsG0sYsGDCM2pmkPONGH_5Rnn08i0}',
+      url: 'https://www.googleapis.com/gmail/v1/users/me/labels?key={AIzaSyAHnhc1puwGI8Jh0ByMCJ307ZCkCBklH7o}',
       dataType: 'json',
       type: 'GET',
       beforeSend: function (request)
@@ -67,9 +69,11 @@ var GmailBox = React.createClass({
       },
       success: function(data)
       {
+
         console.log(data);
         this.setState({allLabelsData:data.labels});
         loadedData=true;
+         this.getinboxlabel();
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(err.toString());
@@ -77,6 +81,57 @@ var GmailBox = React.createClass({
    });
 
  },
+
+ getinboxlabel:function()
+ {
+   var accessToken=localStorage.getItem('gtoken');
+   $.ajax({
+     url:' https://www.googleapis.com/gmail/v1/users/anumolredrose%40gmail.com/messages?labelIds=INBOX&maxResults=10&key={AIzaSyAHnhc1puwGI8Jh0ByMCJ307ZCkCBklH7o}',
+     dataType:'json',
+     type:'GET',
+     beforeSend:function(request)
+     {
+       request.setRequestHeader("Authorization","Bearer "+accessToken);
+     },
+     success:function(data)
+     {
+     //var arraydata=[];
+       {/*for(var i=0;i<data.labels.length;i++)
+         {
+           this.getItems(data.labels[i].id);
+         }*/}
+         console.log("Message:" + data);
+         this.getItems('156ba65f2ea7af52');
+     }.bind(this),
+       error: function(xhr, status, err) {
+         console.error(err.toString());
+       }.bind(this)
+    });
+
+  },
+  getItems:function(id){
+    var messages=[];
+    var accessToken = localStorage.getItem('gToken');
+    $.ajax({
+       url: 'https://www.googleapis.com/gmail/v1/users/anumolredrose%40gmail.com/messages/'+id+'?key={AIzaSyAHnhc1puwGI8Jh0ByMCJ307ZCkCBklH7o}',
+       dataType: 'json',
+       type: 'GET',
+       beforeSend: function (request)
+       {
+         request.setRequestHeader("Authorization", "Bearer "+accessToken);
+       },
+       success:function(data)
+       {
+         console.log(id);
+         console.log(data);
+       }
+       .bind(this),
+         error: function(xhr, status, err) {
+           console.error(err.toString());
+         }.bind(this)
+      });
+
+    },
 
 
  render:function()
@@ -90,6 +145,7 @@ var GmailBox = React.createClass({
    }
 
      return(
+       <div>
        <div className="GmailBox">
            <div className="container-fluid">
              <div className="row">
@@ -109,6 +165,7 @@ var GmailBox = React.createClass({
                  </div>
                </div>
          </div>
+     </div>
      </div>
      );
  }

@@ -1,7 +1,6 @@
 var React=require('react');
 var ReactDom=require('react-dom');
 var Component2=require('./Component2');
-
 var Component1=React.createClass({
   render:function(){
         // console.log("daaaaa"+JSON.stringify(this.props.ldata);
@@ -12,13 +11,11 @@ var Component1=React.createClass({
               </div>
             );
           });
-          return(
-            <div>
-            {llabel}
-            </div>
-          );
-
-
+            return(
+              <div>
+                {llabel}
+              </div>
+            );
   }
 });
 module.exports=Component1
