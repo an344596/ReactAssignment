@@ -6,7 +6,7 @@ render: function(){
     <div className="container-fluid">
       <div className="row" id="row1">
         <div className="col-md-3">
-        <h1>Gmail</h1>
+        <h1>Google</h1>
         </div>
         <div className="col-md-6">
         <form className="navbar-form">

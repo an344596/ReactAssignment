@@ -1,8 +1,9 @@
 var React=require("react");
 var GmailLeft=require('./GmailLeft');
 var Inbox=require('./InboxChild');
-{/*var Compose =require('./ComposeComponent');*/}
+var Child3=require('./Child3');
 var Navbar=require('./Navbar');
+var Compose=require('./ComposeComponent');
 var loadedData=false;
 var retrievedMailArr=[];
 var GmailBox = React.createClass({
@@ -126,7 +127,6 @@ getInitialState: function() {
                var aggregatedArray=fromArray.concat(subjectArray).concat(dateArray);
                retrievedMailArr.push(aggregatedArray);
                console.log(JSON.stringify(retrievedMailArr));
-
                that.setState({allData:retrievedMailArr});
                loadedData=true;
              }
@@ -137,7 +137,7 @@ getInitialState: function() {
 
            });
          });
-         retrievedMailArr=[];
+        retrievedMailArr=[];
 
        }.bind(this),
        error: function(xhr, status, err) {
@@ -163,29 +163,29 @@ if(loadedData){
      <div >
      <Navbar/>
      <div className="GmailBox">
-           <div className="container-fluid">
-             <div className="row">
-                 <div className="col-lg-1">
-                 <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">Login</button>
-                 {/*<Compose/>*/}
-                  </div>
-                  <div className="col-lg-8 pull-right">
-                    <h2>ReactMails</h2>
-                  </div>
-              </div>
-               <div className="row">
-                 <div className="col-lg-2">
-                  <GmailLeft submitLabelId={this.getItems} data={this.state.data}/>
-                  </div>
-                 <div className="col-lg-10">
-                 {rightPanel}
-                 </div>
-               </div>
-         </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-1">
+            <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-right">Login</button>
+            <Compose/>
+          </div>
+          <div className="col-lg-8 pull-right">
+            <h2>GMail</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-2">
+            <GmailLeft submitLabelId={this.getItems} data={this.state.data}/>
+          </div>
+          <div className="col-lg-10">
+            {rightPanel}
+          </div>
+        </div>
+      </div>
      </div>
-     </div>
+    </div>
 
-      );
+  );
 }
 });
 module.exports=GmailBox;

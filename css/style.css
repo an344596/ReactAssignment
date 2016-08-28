@@ -8,6 +8,13 @@ color: white;
 #row1{
   background-color:rgb(153,102,153);
 }
+.modal-header{
+  background-color:black;
+}
+.modal-title,.modal-header{
+  color:white;
+}
+
 .twPc-avatarLink {
   background-color: #fff;
   border-radius: 6px;

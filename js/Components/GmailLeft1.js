@@ -9,7 +9,7 @@ var GmailLeft1= React.createClass({
   render: function() {
     return (
 
-      <td id="btnpad"><a onClick={this.handleLabelId}>{this.props.data.name}</a></td>
+      <td id="btnpad"><a onClick={this.handleLabelId} className="btn btn-link">{this.props.data.name}</a></td>
     );
   }
 });

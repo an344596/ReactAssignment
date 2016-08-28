@@ -15,6 +15,7 @@ var inboxChild = React.createClass({
       rows.push(<Inboxc from1={from1}  subject={subject}  date={date}/>);
 
 
+
     });
 
 

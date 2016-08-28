@@ -10,13 +10,12 @@ var GmailLeft = React.createClass({
     {
       rows.push(
         <div className="row" id="features">
-  							<div className="col-sm-4 feature">
-  								<div className="panel">
-                  <GmailLeft1 submitLabelId={this.props.submitLabelId} data={data} key={data.name} />
-                </div>
-                </div>
-                </div>
-
+  				<div className="col-sm-4 feature">
+  					<div className="panel">
+              <GmailLeft1 submitLabelId={this.props.submitLabelId} data={data} key={data.name} />
+            </div>
+          </div>
+        </div>
       );
     }
 
